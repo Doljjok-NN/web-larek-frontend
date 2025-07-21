@@ -41,25 +41,25 @@ npm run build
 yarn build
 ```
 
-/*
-  Тип описывающий все возможные категории товара
-*/
+
+# Тип описывающий все возможные категории товара:
+
 type CategoryType =
   | 'другое'
   | 'софт-скил'
   | 'дополнительное'
   | 'кнопка'
   | 'хард-скил';
+;
 
-/*
-  Тип, описывающий ошибки валидации форм
-*/
+
+# Тип, описывающий ошибки валидации форм:
+
 type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 
-/*
-  * Интерфейс, описывающий карточку товара в магазине
-  * 
-*/
+
+# Интерфейс, описывающий карточку товара в магазине:
+
 ## interface IProduct {
   // уникальный ID
   id: string;
@@ -83,13 +83,9 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   selected: boolean;
 }
 
-/*
-  * Интерфейс, описывающий внутренне состояние приложения
-    Используется для хранения карточек, корзины, заказа пользователя, ошибок
-    в формах
-    Так же имеет методы для работы с карточками и корзиной
-  * 
-*/
+
+# Интерфейс, описывающий внутренне состояние приложения.Используется для хранения карточек, корзины, заказа пользователя, ошибокв форма. Так же имеет методы для работы с карточками и корзиной:
+  
 ## interface IAppState {
   // Корзина с товарами
   basket: Product[];
@@ -140,10 +136,10 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   resetSelected(): void;
 }
 
-/*
-  * Интерфейс, описывающий поля заказа товара
-  * 
-*/
+
+
+# Интерфейс, описывающий поля заказа товара:
+
 ## export interface IOrder {
   // Массив ID купленных товаров
   items: string[];
@@ -164,10 +160,11 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   phone: string;
 }
 
-/*
-  * Интерфейс, описывающий карточку товара
-  * 
-*/
+
+
+
+# Интерфейс, описывающий карточку товара:
+
 ## interface ICard {
   id: string;
   title: string;
@@ -178,10 +175,8 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   selected: boolean;
 }
 
-/*
-  * Интерфейс описывающий страницу
-  * 
-*/
+
+# Интерфейс описывающий страницу:
 
 ## interface IPage {
   // Счётчик товаров в корзине
@@ -195,10 +190,10 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   locked: boolean;
 }
 
-/*
-  * Интерфейс, описывающий корзину товаров
-  * 
-*/
+
+
+
+# Интерфейс, описывающий корзину товаров:
 
 ## export interface IBasket {
   // Массив элементов li с товаром
@@ -208,10 +203,12 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   price: number;
 }
 
-/*
-  * Интерфейс, описывающий окошко заказа товара
-  * 
-*/
+
+
+
+
+# Интерфейс, описывающий окошко заказа товара:
+
 ## export interface IOrder {
   // Адрес
   address: string;
@@ -220,10 +217,12 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   payment: string;
 }
 
-/*
-  * Интерфейс, описывающий окошко контакты
-  * 
-*/
+
+
+
+
+# Интерфейс, описывающий окошко контакты:
+
 ## export interface IContacts {
   // Телефон
   phone: string;
@@ -233,10 +232,7 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 }
 
 <!------------------------------## МОДЕЛИ ДАННЫХ ##-------------------------------------------->
-
-/**
- * Базовая модель, чтобы можно было отличить ее от простых объектов с данными
-*/
+# Базовая модель, чтобы можно было отличить ее от простых объектов с данными:
 
 ## abstract class Model<T> {
   // Принимает данные для хранения, эвент эмиттер
@@ -246,10 +242,9 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   emitChanges(event: string, payload?: object) {}
 }
 
-/*
-  * Класс, описывающий состояние приложения
-  * 
-*/
+
+
+# Класс, описывающий состояние приложения:
 
 ## export class AppState extends Model<IAppState> {
   // Корзина с товарами
@@ -309,10 +304,7 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 }
 
 <!------------------------------------- Классы представления ------------------------------------------------------>
-
-/**
- * Базовый компонент
-*/
+# Базовый компонент:
 
 ## abstract class Component<T> {
   // Конструктор принимает родительский элемент
@@ -340,10 +332,7 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   render(data?: Partial<T>): HTMLElement;
 }
 
-/*
-  * Класс, описывающий главную страницу
-  * 
-*/
+# Класс, описывающий главную страницу:
 
 ## class Page extends Component<IPage> {
   // Ссылки на внутренние элементы
@@ -365,9 +354,9 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   set locked(value: boolean);
 }
 
-/*
-  Класс, описывающий карточку товара
-*/
+
+
+# Класс, описывающий карточку товара:
 
 ## class Card extends Component<ICard> {
   // Ссылки на внутренние элементы карточки
@@ -402,10 +391,9 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   set category(value: CategoryType);
 }
 
-/*
-  * Класс, описывающий корзину товаров
-  * 
-*/
+
+
+# Класс, описывающий корзину товаров:
 
 ## export class Basket extends Component<IBasket> {
   // Ссылки на внутренние элементы
@@ -429,10 +417,8 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   refreshIndices(): void;
 }
 
-/*
-  * Класс, описывающий окошко заказа товара
-  * 
-*/
+
+# Класс, описывающий окошко заказа товара:
 
 ## export class Order extends Form<IOrder> {
   // Сссылки на внутренние элементы
@@ -446,10 +432,7 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
   disableButtons(): void;
 }
 
-/*
-  * Класс, описывающий окошко контакты
-  * 
-*/
+# Класс, описывающий окошко контакты:
 
 ## export class Contacts extends Form<IContacts> {
   // Конструктор принимает родительский элемент и обработчик событий
@@ -459,9 +442,7 @@ type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 
 <!------------------------ ДОПОЛНИТЕЛЬНЫЕ КЛАССЫ ------------------------->
 
-/**
- * Класс для работы с Api
-*/
+# Класс для работы с Api:
 
 class Api {
   // Базовый URL для Api
